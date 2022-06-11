@@ -6,13 +6,14 @@ class GeneralRender extends Component {
 	}
 
 	render() {
+		let { name, email, phone, address } = this.props.sendGeneralDataSECOND;
 		return (
 			<div className="flex-column-container flex-centered">
-				<h1>{this.props.name}</h1>
+				<h1>{name}</h1>
 				<p>
-					{this.props.phone} &nbsp;|&nbsp; {this.props.email}
+					{phone} &nbsp;|&nbsp; {email}
 				</p>
-				<p>{this.props.address}</p>
+				<p>{address}</p>
 			</div>
 		);
 	}

@@ -12,19 +12,39 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			general: [],
+			general: {},
 			education: [],
 			work: [],
 		};
+
+		this.handleGeneral = this.handleGeneral.bind(this);
+		this.handleEducation = this.handleEducation.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleGeneral(obj) {
+		this.setState({
+			general: obj,
+		});
+	}
+
+	handleEducation(obj) {
+		// this.setState({
+		// 	education: this.state.education.concat(obj),
+		// });
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
 	}
 
 	render() {
 		return (
 			<div id="overall-wrapper">
 				<section id="form-section">
-					<form>
-						<GeneralForm />
-						<EducationForm />
+					<form onSubmit={this.handleSubmit}>
+						<GeneralForm getGeneralData={this.handleGeneral} />
+						<EducationForm getEducationData={this.handleEducation} />
 						<WorkForm />
 					</form>
 					<button id="generate-btn" type="submit">
@@ -32,7 +52,10 @@ class App extends Component {
 					</button>
 				</section>
 				<section id="render-section">
-					<RenderedCV />
+					<RenderedCV
+						sendGeneralDataFIRST={this.state.general}
+						sendEducationDataFIRST={this.state.education}
+					/>
 				</section>
 			</div>
 		);

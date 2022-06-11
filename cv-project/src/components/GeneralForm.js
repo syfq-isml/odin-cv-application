@@ -12,12 +12,21 @@ class GeneralForm extends Component {
 		};
 
 		this.handleChange = this.handleChange.bind(this);
+		this.sendGeneralData = this.sendGeneralData.bind(this);
 	}
 
 	handleChange(e) {
-		this.setState({
-			[e.target.dataset.item]: e.target.value,
-		});
+		console.log(e.target.value);
+		this.setState(
+			{
+				[e.target.dataset.item]: e.target.value,
+			},
+			() => this.sendGeneralData()
+		);
+	}
+
+	sendGeneralData() {
+		this.props.getGeneralData(this.state);
 	}
 
 	render() {
